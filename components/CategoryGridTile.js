@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 150,
     borderRadius: 10,
-    overflow: "hidden",
+    overflow: Platform.OS === "android" ? "hidden" : "visible",
+    elevation: 5,
   },
   container: {
     borderRadius: 10,
@@ -44,7 +45,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3,
     padding: 15,
     alignItems: "flex-end",
     justifyContent: "flex-end",
