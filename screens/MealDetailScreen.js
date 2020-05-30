@@ -16,7 +16,7 @@ MealDetailScreen.navigationOptions = (navigationOptions) => {
   const meal = navigationOptions.navigation.getParam("meal");
   return {
     title: meal.title,
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favourite"
