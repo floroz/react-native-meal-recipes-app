@@ -14,6 +14,12 @@ const CategoryMealsScreen = (props) => {
   );
 };
 
+CategoryMealsScreen.navigationOptions = ({ navigation: { getParam } }) => {
+  return {
+    title: getParam("categoryTitle"),
+  };
+};
+
 export default CategoryMealsScreen;
 
 const styles = StyleSheet.create({
