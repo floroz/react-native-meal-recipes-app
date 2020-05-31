@@ -72,9 +72,12 @@ const tabScreenSettings = {
   },
 };
 
-const FiltersScreenNavigator = createStackNavigator({
-  Filters: { screen: FiltersScreen },
-});
+const FiltersScreenNavigator = createStackNavigator(
+  {
+    Filters: { screen: FiltersScreen },
+  },
+  defaultStackNavOptions
+);
 
 const MealsFavTabNavigator =
   Platform.OS === "android"
@@ -88,9 +91,24 @@ const MealsFavTabNavigator =
         },
       });
 
-const MainNavigator = createDrawerNavigator({
-  MealsFavs: MealsFavTabNavigator,
-  Filters: FiltersScreenNavigator,
-});
+const MainNavigator = createDrawerNavigator(
+  {
+    MealsFavs: {
+      screen: MealsFavTabNavigator,
+      navigationOptions: {
+        drawerLabel: "Meals",
+      },
+    },
+    Filters: FiltersScreenNavigator,
+  },
+  {
+    contentOptions: {
+      activeTintColor: colors.accentColor,
+      labelStyle: {
+        fontFamily: "open-sans-bold",
+      },
+    },
+  }
+);
 
 export default createAppContainer(MainNavigator);
