@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Text, Platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -9,7 +9,6 @@ import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import FiltersScreen from "../screens/FiltersScreen";
-import { Platform } from "react-native";
 import colors from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -18,6 +17,12 @@ const defaultStackNavOptions = {
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: Platform.OS === "android" && colors.primaryColor,
+    },
+    headerTitleStyle: {
+      fontFamily: "open-sans-bold",
+    },
+    headerBackTitleStyle: {
+      fontFamily: "open-sans",
     },
     headerTintColor: Platform.OS === "android" ? "#fff" : colors.primaryColor,
   },
@@ -59,6 +64,12 @@ const tabScreenSettings = {
         );
       },
       tabBarColor: colors.primaryColor,
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+        ) : (
+          "Meals"
+        ),
     },
   },
   Favorite: {
@@ -87,6 +98,9 @@ const MealsFavTabNavigator =
       })
     : createBottomTabNavigator(tabScreenSettings, {
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: "open-sans-bold",
+          },
           activeTintColor: colors.accentColor,
         },
       });
