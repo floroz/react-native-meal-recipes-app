@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Platform } from "react-native";
 import colors from "../constants/colors";
 import MealList from "../components/MealList";
 import { MEALS } from "../data/dummy-data";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 
 const FavoritesScreen = (props) => {
   return (
@@ -15,13 +17,25 @@ const FavoritesScreen = (props) => {
   );
 };
 
-FavoritesScreen.navigationOptions = (navigationOptions) => {
-  if (Platform.OS !== "android") return;
-  return {
-    title: "Your Favorites",
+FavoritesScreen.navigationOptions = ({ navigation }) => {
+  let androidOptions = {
     headerStyle: {
       backgroundColor: colors.accentColor,
     },
+  };
+  if (Platform.OS !== "android") androidOptions = {};
+  return {
+    ...androidOptions,
+    title: "Your Favorites",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 

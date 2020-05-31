@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTile from "../components/CategoryGridTile";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 
 const CategoriesScreen = (props) => {
   const { navigate } = props.navigation;
@@ -28,6 +30,20 @@ const CategoriesScreen = (props) => {
   return (
     <FlatList numColumns={2} data={CATEGORIES} renderItem={renderGridItem} />
   );
+};
+
+CategoriesScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 export default CategoriesScreen;
