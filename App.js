@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
+import store from "./store/store";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import MealsNavigator from "./navigation/MealsNavigator";
@@ -27,11 +29,13 @@ export default function App() {
   }
 
   return (
-    <MealsNavigator>
-      {/* <View style={styles.container}>
+    <Provider store={store}>
+      <MealsNavigator>
+        {/* <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
       </View> */}
-    </MealsNavigator>
+      </MealsNavigator>
+    </Provider>
   );
 }
 
