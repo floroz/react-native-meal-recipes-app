@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Platform } from "react-native";
+import { StyleSheet, View, Platform, Text } from "react-native";
 import colors from "../constants/colors";
 import MealList from "../components/MealList";
 import { useSelector } from "react-redux";
@@ -8,6 +8,14 @@ import HeaderButton from "../components/HeaderButton";
 
 const FavoritesScreen = ({ navigation }) => {
   const favMeals = useSelector((state) => state.meals.favoriteMeals);
+
+  if (!favMeals || favMeals.length === 0) {
+    return (
+      <View style={styles.fallback}>
+        <Text style={styles.fallbackText}>No Favorite Meals found.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
@@ -45,5 +53,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignContent: "center",
+  },
+  fallback: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  fallbackText: {
+    fontFamily: "open-sans",
+    fontSize: 20,
   },
 });
